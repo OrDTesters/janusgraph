@@ -24,17 +24,17 @@ on:
     - 'mkdocs.yml'
     - 'docs.Dockerfile'
     - '*.md'
-  push:
-    paths-ignore:
-    - 'docs/**'
-    - '.github/workflows/ci-docs.yml'
-    - '.github/ISSUE_TEMPLATE/**'
-    - 'requirements.txt'
-    - 'mkdocs.yml'
-    - 'docs.Dockerfile'
-    - '*.md'
-    branches-ignore:
-      - 'dependabot/**'
+  # push:
+  #   paths-ignore:
+  #   - 'docs/**'
+  #   - '.github/workflows/ci-docs.yml'
+  #   - '.github/ISSUE_TEMPLATE/**'
+  #   - 'requirements.txt'
+  #   - 'mkdocs.yml'
+  #   - 'docs.Dockerfile'
+  #   - '*.md'
+  #   branches-ignore:
+  #     - 'dependabot/**'
 
 env:
   BUILD_MAVEN_OPTS: "-DskipTests=true --batch-mode --also-make"
