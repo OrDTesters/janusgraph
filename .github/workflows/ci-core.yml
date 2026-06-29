@@ -37,7 +37,7 @@ on:
 
 env:
   BUILD_MAVEN_OPTS: "-DskipTests=true --batch-mode --also-make"
-  INSTALL_MAVEN_OPTS: "-Dmaven.javadoc.skip=true"
+  MAVEN_OPTS: "-Dmaven.javadoc.skip=true"
   VERIFY_MAVEN_OPTS: "-Pcoverage"
 
 jobs:
@@ -58,15 +58,15 @@ jobs:
         with:
           java-version: 8
           distribution: zulu
-      - run: mvn clean install --projects janusgraph-all -Pjanusgraph-cache ${{ env.INSTALL_MAVEN_OPTS }} ${{ env.BUILD_MAVEN_OPTS }}
+      - run: mvn clean install --projects janusgraph-all -Pjanusgraph-cache ${{ env.BUILD_MAVEN_OPTS }}
       - run: mvn verify --projects janusgraph-all -Pjanusgraph-cache ${{ env.VERIFY_MAVEN_OPTS }}
 
   build-java11:
     needs: build-all
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
-    runs-on: ${{ matrix.os }}
+    # strategy:
+    #   matrix:
+    #     os: [ ubuntu-latest, windows-latest, macos-latest ]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
@@ -79,7 +79,7 @@ jobs:
         with:
           java-version: 11
           distribution: zulu
-      - run: mvn clean install --projects janusgraph-all -Pjava-11 -Pjanusgraph-cache ${{ env.INSTALL_MAVEN_OPTS }} ${{ env.BUILD_MAVEN_OPTS }}
+      - run: mvn clean install --projects janusgraph-all -Pjava-11 -Pjanusgraph-cache -Dmaven.javadoc.skip=true ${{ env.BUILD_MAVEN_OPTS }}
       - run: mvn verify --projects janusgraph-all -Pjava-11 -Pjanusgraph-cache ${{ env.VERIFY_MAVEN_OPTS }}
 
   tests:

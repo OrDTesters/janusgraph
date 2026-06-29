@@ -15,16 +15,17 @@
 name: CI Benchmark
 
 on:
-  push:
-    paths-ignore:
-    - 'docs/**'
-    - '.github/workflows/ci-docs.yml'
-    - 'requirements.txt'
-    - 'mkdocs.yml'
-    - 'docs.Dockerfile'
-    - '*.md'
-    branches-ignore:
-      - 'dependabot/**'
+  pull_request:
+  # push:
+  #   paths-ignore:
+  #   - 'docs/**'
+  #   - '.github/workflows/ci-docs.yml'
+  #   - 'requirements.txt'
+  #   - 'mkdocs.yml'
+  #   - 'docs.Dockerfile'
+  #   - '*.md'
+  #   branches-ignore:
+  #     - 'dependabot/**'
 
 env:
   BUILD_MAVEN_OPTS: "-DskipTests=true --batch-mode --also-make"

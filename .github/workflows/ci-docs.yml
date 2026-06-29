@@ -16,9 +16,9 @@ name: CI Docs
 
 on:
   pull_request:
-  push:
-    branches-ignore:
-      - 'dependabot/**'
+  # push:
+  #   branches-ignore:
+  #     - 'dependabot/**'
 
 env:
   STRUCTOR_VERSION: v1.13.2
